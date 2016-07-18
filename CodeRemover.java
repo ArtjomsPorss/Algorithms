@@ -1,12 +1,12 @@
 /**
  * @author: Artjoms Porss
  * 
- * Description: Application that deletes a portion of string between START_AFTER and END_BEFORE after each SEARCH_AFTER piece 
- * of text in a file.
+ * Description: Application that deletes a portion of string between START_AFTER and END_BEFORE after each SEARCH_AFTER piece of text
+ *  in a file.
  * Works where SEARCH_AFTER, START_AFTER and END_BEFORE are unique and never used for anything else. Else - watch for bugs.
  * Myself used to edit big portions of HTML with 1-5K lines of markup.
  * 
- * Example: Use to remove <option>s in <select> between START_AFTER and END_BEFORE where <class="SEARCH_AFTER">.
+ * Example: Use to remove <option>s in <select> between START_AFTER and END_BEFORE where class is SEARCH_AFTER.
  */
 
 
@@ -19,8 +19,8 @@ import java.util.Scanner;
 
 public class CodeRemover {
 	static final String SEARCH_AFTER = "class_name";
-	static final String START_AFTER = "<option value=\"\"></option>";
-	static final String END_BEFORE = "</select>";
+	static final String START_AFTER = "begin_tag";
+	static final String END_BEFORE = "end_tag";
 
 	public static void main(String[] args) {
 		
@@ -31,7 +31,11 @@ public class CodeRemover {
 		int endPos = 0;
 
 		String temp = null;
-
+		
+		System.out.println("Deletion Started");
+		
+		long startTime = System.currentTimeMillis();
+		
 		doSearch: do {
 			startPos = 0;
 			endPos = 0;
@@ -62,9 +66,11 @@ public class CodeRemover {
 			// store the string we got
 			testString = temp;
 
-			// update log
 			System.out.format("Deletion No: %d   Deleted: %d characters%n", ++deleted, endPos-startPos);// one deletion done
 		} while (true);
+		
+		long endTime = System.currentTimeMillis();
+		System.out.format("Deletion Complete. Deletion occured in %d places, time to complete: %.2f seconds%n", deleted, (endTime-startTime)/100.0);
 
 		// save when done
 		saveText(testString);
@@ -95,7 +101,6 @@ public class CodeRemover {
 
 	//saves text to file
 	public static void saveText(String textToSave) {
-	  //TODO modify save path as needed. It will create the text file but won't create a folder for text file.
 		String filePath = System.getProperty("user.dir")
 				+ "\\bin\\text modified.txt";
 		File saveFile = new File(filePath);
