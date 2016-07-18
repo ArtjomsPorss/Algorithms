@@ -1,12 +1,12 @@
 /**
  * @author: Artjoms Porss
  * 
- * Description: Application that deletes a portion of string between START_AFTER and END_BEFORE after each SEARCH_AFTER piece of text
- *  in a file.
+ * Description: Application that deletes a portion of string between START_AFTER and END_BEFORE after each SEARCH_AFTER piece 
+ * of text in a file.
  * Works where SEARCH_AFTER, START_AFTER and END_BEFORE are unique and never used for anything else. Else - watch for bugs.
  * Myself used to edit big portions of HTML with 1-5K lines of markup.
  * 
- * Example: Use to remove <option>s in <select> between START_AFTER and END_BEFORE where class is SEARCH_AFTER.
+ * Example: Use to remove <option>s in <select> between START_AFTER and END_BEFORE where <class="SEARCH_AFTER">.
  */
 
 
